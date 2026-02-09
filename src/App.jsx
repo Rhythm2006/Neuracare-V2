@@ -3,8 +3,8 @@ import Layout from './components/Layout';
 import MoodInput from './components/MoodInput';
 import BurnoutResult from './components/BurnoutResult';
 import LandingPage from './components/LandingPage';
-import JournalPlaceholder from './components/JournalPlaceholder';
-import JournalAnalyzerPlaceholder from './components/JournalAnalyzerPlaceholder';
+import Journal from './components/Journal';
+import JournalAnalyzer from './components/JournalAnalyzer';
 import FluidBackground from './components/FluidBackground';
 import { ArrowLeft } from 'lucide-react';
 
@@ -28,10 +28,10 @@ function App() {
         return <LandingPage onNavigate={setCurrentView} />;
 
       case 'journal':
-        return <JournalPlaceholder />;
+        return <Journal />;
 
       case 'journal-analysis':
-        return <JournalAnalyzerPlaceholder />;
+        return <JournalAnalyzer />;
 
       case 'mood':
         return (
