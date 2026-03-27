@@ -15,9 +15,28 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URL)
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.error('MongoDB Connection Error:', err));
+const connectDB = async () => {
+  if (mongoose.connection.readyState === 1) {
+    return;
+  }
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log('MongoDB Connected');
+  } catch (error) {
+    console.error('MongoDB Connection Error:', error);
+    throw error;
+  }
+};
+
+// Ensure DB is connected before handling requests
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    res.status(500).json({ message: 'Database Connection Error' });
+  }
+});
 
 // Journal Schema & Model
 const journalSchema = new mongoose.Schema({
