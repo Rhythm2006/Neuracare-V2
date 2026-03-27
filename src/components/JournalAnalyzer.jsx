@@ -12,7 +12,7 @@ const JournalAnalyzer = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('http://localhost:5002/api/analyze-journals', {
+            const response = await fetch('/api/analyze-journals', {
                 method: 'POST',
             });
 

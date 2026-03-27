@@ -15,7 +15,7 @@ const Journal = () => {
 
     const fetchJournals = async () => {
         try {
-            const response = await fetch('http://localhost:5002/api/journals');
+            const response = await fetch('/api/journals');
             if (!response.ok) {
                 throw new Error('Failed to fetch journals');
             }
@@ -34,7 +34,7 @@ const Journal = () => {
 
         setSubmitting(true);
         try {
-            const response = await fetch('http://localhost:5002/api/journals', {
+            const response = await fetch('/api/journals', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const Journal = () => {
         if (!window.confirm('Are you sure you want to delete this journal entry?')) return;
 
         try {
-            const response = await fetch(`http://localhost:5002/api/journals/${id}`, {
+            const response = await fetch(`/api/journals/${id}`, {
                 method: 'DELETE',
             });
 
